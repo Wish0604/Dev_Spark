@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  body {
+    font-family: 'Geist', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #000000;
+    color: #ededed;
+  }
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.font-display {
+  font-family: 'Geist', 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.font-bebas {
+  font-family: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+}
+
+/* Hero Highlight Dot Patterns */
+.bg-dot-thick-neutral-800 {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+.bg-dot-thick-white {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.7) 1.4px, transparent 1.4px);
+  background-size: 24px 24px;
+}
+
+.bg-dot-thick-indigo-500 {
+  background-image: radial-gradient(circle, rgba(99, 102, 241, 0.7) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+/* Chrome metallic gradient text & elements */
+.chrome-text {
+  background: linear-gradient(180deg, #ffffff 0%, #d4d4d8 45%, #71717a 85%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.chrome-silver-text {
+  background: linear-gradient(180deg, #ffffff 0%, #eaeaea 50%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cora-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(14, 14, 16, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a1a1aa;
+}
+
+.cora-card {
+  background: rgba(12, 12, 15, 0.75);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cora-card:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 35px -10px rgba(255, 255, 255, 0.08);
+}
+
+.cora-token-glow {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.chrome-border {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.chrome-card {
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.04) 0%, rgba(12, 12, 12, 0.95) 70%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.chrome-card:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 0 30px -10px rgba(255, 255, 255, 0.1);
+}
+
+.chrome-glow {
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+}
+
+.spark-glow {
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.45));
+}
+
+/* Subtle grid line overlay */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Subtle dot pattern */
+.bg-dots-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Custom Cursor styles - only applied on fine pointers (desktop mouse/trackpad) */
+@media (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+

@@ -1,0 +1,7 @@
+{
+  "name": "Dev_Spark",
+  "description": "Where ideas meet action. A community and builder ecosystem for students, developers, builders, and founders to learn, build, connect, and grow.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

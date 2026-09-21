@@ -1,0 +1,113 @@
+import fs from 'fs';
+
+// Node script to test and verify the SVG paths
+const testSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 560" width="540" height="560" style="background:#000000">
+  <!-- DevSpark Exact Wireframe Logo -->
+  <g stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Concentric Double Rings -->
+    <!-- Center (270, 205), R1 = 135, R2 = 120 -->
+    <!-- Upper-left outer arc -->
+    <path d="M 314 74 A 135 135 0 0 0 152 270" stroke-width="2.2" />
+    <!-- Lower-right outer arc -->
+    <path d="M 226 336 A 135 135 0 0 0 395 146" stroke-width="2.2" />
+
+    <!-- Upper-left inner arc -->
+    <path d="M 305 88 A 120 120 0 0 0 160 262" stroke-width="1.4" stroke-dasharray="32 6 70 8" opacity="0.8" />
+    <!-- Lower-right inner arc -->
+    <path d="M 235 322 A 120 120 0 0 0 380 155" stroke-width="1.4" stroke-dasharray="50 8 35 6" opacity="0.8" />
+
+    <!-- Satellite orbital arcs (top-left) -->
+    <path d="M 155 115 A 165 165 0 0 1 306 42" stroke-width="1.5" stroke-dasharray="16 5 8 5" opacity="0.75" />
+    <path d="M 188 82 A 185 185 0 0 1 265 48" stroke-width="1.2" opacity="0.4" />
+
+    <!-- Speed Slashes & Axis Cutters -->
+    <line x1="108" y1="264" x2="178" y2="194" stroke-width="2.2" stroke-linecap="square" />
+    <line x1="120" y1="276" x2="156" y2="240" stroke-width="1.2" opacity="0.6" />
+    <line x1="196" y1="375" x2="246" y2="325" stroke-width="2" stroke-linecap="square" />
+    <line x1="180" y1="398" x2="222" y2="356" stroke-width="1.2" opacity="0.5" />
+    <line x1="395" y1="158" x2="445" y2="108" stroke-width="2" stroke-linecap="square" />
+
+    <!-- Extended Axis Line from Arrow to Top-Right Tech Terminal -->
+    <line x1="335" y1="140" x2="435" y2="40" stroke-width="1.4" stroke-dasharray="10 4" opacity="0.8" />
+    <rect x="431" y="36" width="6.5" height="6.5" fill="#ffffff" stroke="none" />
+
+    <!-- Floating Data Bits -->
+    <rect x="310" y="32" width="6.5" height="6.5" fill="#ffffff" stroke="none" />
+    <rect x="330" y="46" width="5" height="5" stroke-width="1" />
+    <rect x="238" y="356" width="6" height="6" stroke-width="1" />
+    <rect x="252" y="350" width="5" height="5" fill="#ffffff" stroke="none" opacity="0.8" />
+
+    <!-- Central Integrated Arrow + Lightning Bolt (Outlined) -->
+    <polygon
+      points="
+        388,48
+        312,86
+        332,106
+        250,106
+        198,218
+        260,218
+        160,388
+        242,274
+        194,274
+        286,168
+        346,168
+        364,186
+      "
+      stroke-width="3"
+      stroke-linejoin="miter"
+      stroke-miterlimit="6"
+    />
+
+    <!-- Internal Facet Crease Lines -->
+    <line x1="388" y1="48" x2="348" y2="146" stroke-width="1.6" opacity="0.85" />
+    <line x1="312" y1="86" x2="348" y2="146" stroke-width="1.4" opacity="0.5" />
+    <line x1="364" y1="186" x2="348" y2="146" stroke-width="1.4" opacity="0.5" />
+    <line x1="348" y1="146" x2="260" y2="218" stroke-width="1.4" opacity="0.5" />
+    <line x1="260" y1="218" x2="160" y2="388" stroke-width="1.6" opacity="0.7" />
+
+    <!-- 5-Square Pixel "X" in upper torso -->
+    <rect x="256" y="126" width="9" height="9" stroke-width="1.5" />
+    <rect x="278" y="126" width="9" height="9" stroke-width="1.5" />
+    <rect x="267" y="137" width="9" height="9" stroke-width="1.5" />
+    <rect x="256" y="148" width="9" height="9" stroke-width="1.5" />
+    <rect x="278" y="148" width="9" height="9" stroke-width="1.5" />
+  </g>
+
+  <!-- Outline Wordmark </Dev_Spark> -->
+  <g stroke="#ffffff" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- < -->
+    <path d="M 68 418 L 36 440 L 68 462 L 62 467 L 26 440 L 62 413 Z" />
+    <!-- / -->
+    <polygon points="76,467 87,467 106,413 95,413" />
+    <!-- D -->
+    <path d="M 116 413 L 144 413 C 160 413 168 423 168 440 C 168 457 160 467 144 467 L 116 467 Z M 128 423 L 142 423 C 152 423 156 428 156 440 C 156 452 152 457 142 457 L 128 457 Z" />
+    <!-- e -->
+    <path d="M 178 426 L 206 426 C 212 426 216 430 216 436 L 216 446 L 190 446 C 190 453 194 457 204 457 C 210 457 214 455 216 451 L 226 455 C 222 463 214 467 204 467 C 188 467 178 456 178 442 C 178 429 188 426 202 426 Z M 190 438 L 204 438 C 204 432 202 431 197 431 C 192 431 190 433 190 438 Z" />
+    <!-- v -->
+    <polygon points="228,426 239,426 250,453 261,426 272,426 256,467 243,467" />
+    <!-- _ -->
+    <polygon points="278,460 302,460 302,467 278,467" />
+    <!-- S -->
+    <path d="M 336 424 L 314 424 L 314 434 L 328 438 C 337 440 339 445 339 452 C 339 462 331 467 318 467 L 308 467 L 308 458 L 327 458 L 327 449 L 314 445 C 308 443 304 439 304 432 C 304 424 310 416 322 416 L 336 416 Z" />
+    <!-- p -->
+    <path d="M 346 426 L 372 426 C 382 426 388 432 388 441 C 388 450 382 457 372 457 L 358 457 L 358 478 L 346 478 Z M 358 434 L 358 448 L 370 448 C 374 448 376 445 376 441 C 376 437 374 434 370 434 Z" />
+    <!-- a -->
+    <path d="M 396 426 L 420 426 L 420 467 L 410 467 L 410 460 C 406 465 402 467 396 467 C 388 467 384 461 384 452 C 384 443 392 437 410 437 L 410 434 C 410 430 406 429 401 429 C 397 429 395 431 395 433 Z M 410 445 C 400 445 396 448 396 452 C 396 456 398 458 402 458 C 406 458 410 455 410 449 Z" />
+    <!-- r -->
+    <path d="M 428 426 L 439 426 L 439 435 C 443 428 448 426 454 427 L 450 439 C 445 437 441 440 439 446 L 439 467 L 428 467 Z" />
+    <!-- k -->
+    <polygon points="460,413 471,413 471,438 482,426 495,426 480,441 497,467 484,467 471,446 471,467 460,467" />
+    <!-- > -->
+    <path d="M 504 413 L 540 440 L 504 467 L 498 462 L 528 440 L 498 418 Z" />
+
+    <!-- Tech Baseline Underline: Line - Three Outline Square Dots - Line -->
+    <line x1="168" y1="492" x2="252" y2="492" stroke-width="2.5" stroke-linecap="round" />
+    <rect x="266" y="488" width="7" height="7" stroke-width="1.8" />
+    <rect x="280" y="488" width="7" height="7" stroke-width="1.8" />
+    <rect x="294" y="488" width="7" height="7" stroke-width="1.8" />
+    <line x1="308" y1="492" x2="392" y2="492" stroke-width="2.5" stroke-linecap="round" />
+  </g>
+</svg>`;
+
+fs.writeFileSync('public/assets/dev_spark_uploaded_match.svg', testSvg);
+console.log('Saved public/assets/dev_spark_uploaded_match.svg');
